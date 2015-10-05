@@ -24,12 +24,12 @@
         </hz:config>
     </hz:hazelcast>
 
-    <bean id="entryEventServiceDelegate" class="com.craftedbytes.hazelcast.entryevent.service.EntryEventServiceDelegate">
+    <bean id="entryEventServiceDelegate" class="com.hazelcast.samples.entrylistener.handoff.service.EntryEventServiceDelegate">
         <constructor-arg index="0" ref="threadPoolEntryEventService"/>
         <constructor-arg index="1" ref="loggingCompletionListener"/>
     </bean>
 
-    <bean id="threadPoolEntryEventService" class="com.craftedbytes.hazelcast.entryevent.service.ThreadPoolEntryEventService">
+    <bean id="threadPoolEntryEventService" class="com.hazelcast.samples.entrylistener.handoff.service.ThreadPoolEntryEventService">
         <!-- Number of Executors -->
         <constructor-arg index="0">
             <value>5</value>
@@ -49,9 +49,9 @@
 
     </bean>
 
-    <bean id="loggingCompletionListener" class="com.craftedbytes.hazelcast.entryevent.service.listener.LoggingCompletionListener"/>
+    <bean id="loggingCompletionListener" class="com.hazelcast.samples.entrylistener.handoff.service.listener.LoggingCompletionListener"/>
 
-    <bean id="loggingLongRunningThreadListener" class="com.craftedbytes.hazelcast.entryevent.service.listener.LoggingLongRunningThreadListener">
+    <bean id="loggingLongRunningThreadListener" class="com.hazelcast.samples.entrylistener.handoff.service.listener.LoggingLongRunningThreadListener">
         <constructor-arg index="0">
                 <value>1</value>
         </constructor-arg>
@@ -63,7 +63,7 @@
     </bean>
 
     <!-- The EntryEventTypeProcessorFactory that is used by the EntryEventService -->
-    <bean id="entryEventTypeProcessorFactory" class="com.craftedbytes.hazelcast.entryevent.service.processors.EntryEventTypeProcessorFactory">
+    <bean id="entryEventTypeProcessorFactory" class="com.hazelcast.samples.entrylistener.handoff.service.processors.EntryEventTypeProcessorFactory">
         <constructor-arg index="0">
             <map key-type="com.hazelcast.core.EntryEventType">
                 <entry key="ADDED" value-ref="wordCountEntryEventProcessorClass"/>
@@ -73,7 +73,7 @@
 
     <bean id="wordCountEntryEventProcessorClass" class="java.lang.Class" factory-method="forName">
         <constructor-arg index="0">
-            <value>com.craftedbytes.hazelcast.entryevent.service.processors.WordCountEntryEventProcessor</value>
+            <value>com.hazelcast.samples.entrylistener.handoff.service.processors.WordCountEntryEventProcessor</value>
         </constructor-arg>
     </bean>
 
