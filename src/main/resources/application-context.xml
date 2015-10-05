@@ -9,7 +9,7 @@
     <hz:hazelcast id="instance">
         <hz:config>
             <hz:group name="dev" password="password"/>
-            <hz:network port="5701" port-auto-increment="false">
+            <hz:network port="5701" port-auto-increment="true">
                 <hz:join>
                     <hz:multicast enabled="true"
                                   multicast-group="224.2.2.3"
